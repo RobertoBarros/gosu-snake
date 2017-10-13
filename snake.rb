@@ -49,6 +49,12 @@ class Snake
   end
 
   def change_direction(new_direction)
+    # The snake can't reverse the direction
+    return if (@direction == 'up' && new_direction == 'down') ||
+              (@direction == 'down' && new_direction == 'up') ||
+              (@direction == 'left' && new_direction == 'right') ||
+              (@direction == 'right' && new_direction == 'left')
+
     @direction = new_direction
   end
 
