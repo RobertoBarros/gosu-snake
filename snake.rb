@@ -37,7 +37,15 @@ class Snake
   end
 
   def dead?
-    @segments.first[:x] < 0 || @segments.first[:x] > MAX_X || @segments.first[:y] < 0 || @segments.first[:y] > MAX_Y
+    return true if @segments.first[:x] < 0 || @segments.first[:x] > MAX_X || @segments.first[:y] < 0 || @segments.first[:y] > MAX_Y
+
+    @segments.each_with_index do |segment, index|
+      next if index.zero?
+      head = @segments.first
+      return true if head[:x] == segment[:x] && head[:y] == segment[:y]
+    end
+
+    false
   end
 
   def change_direction(new_direction)

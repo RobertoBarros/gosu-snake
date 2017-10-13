@@ -19,12 +19,13 @@ class Game < Gosu::Window
     get_key()
     return if (Time.now - @last_update) < 0.15
 
+    @snake.move
+
     if @snake.dead?
       puts "GAME OVER"
       exit
     end
 
-    @snake.move
     @last_update = Time.now
   end
 
